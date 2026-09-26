@@ -121,6 +121,262 @@ function BellIcon({ className }: { className?: string }) {
   );
 }
 
+const TRUSTED_BRANDS = [
+  {
+    name: "Hindustan Petroleum",
+    badge: { text: "hp", class: "bg-[#E4002B] text-white" },
+    nameClass: "text-[#0B4EA2]",
+  },
+  {
+    name: "Alfamart",
+    badge: null,
+    nameClass: "italic text-[#E4002B]",
+  },
+  {
+    name: "TATA",
+    badge: null,
+    nameClass: "text-[#1B4F9C]",
+  },
+  {
+    name: "Reliance",
+    badge: { text: "◎", class: "bg-[#0A2A66] text-white" },
+    nameClass: "font-serif text-[#0A2A66]",
+  },
+  {
+    name: "ONGC",
+    badge: { text: "O", class: "bg-[#C8102E] text-white" },
+    nameClass: "text-[#C8102E]",
+  },
+  {
+    name: "Indian Railways",
+    badge: { text: "IR", class: "bg-[#F97316] text-white" },
+    nameClass: "text-[#0C5DAA]",
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    name: "Neha Sharma",
+    role: "Volunteer",
+    quote:
+      "“iTantra helped us coordinate rescue efforts after the landslide. It worked flawlessly, even without signal!”",
+    avatarClass: "bg-[#E5484D]/15 text-[#E5484D]",
+  },
+  {
+    name: "Rohit Singh",
+    role: "First Responder",
+    quote:
+      "“The SAR radar is a game changer. We found 3 victims in under 20 minutes using the app.”",
+    avatarClass: "bg-[#3D82F6]/15 text-[#3D82F6]",
+  },
+  {
+    name: "Priya Nair",
+    role: "Community Member",
+    quote: "“Simple, powerful, and reliable. This app gives hope when it’s needed most.”",
+    avatarClass: "bg-[#7C5CF6]/15 text-[#7C5CF6]",
+  },
+];
+
+function StarIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+    </svg>
+  );
+}
+
+const THEMES = [
+  {
+    name: "Light Air",
+    desc: "Day mode, high clarity",
+    active: false,
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2" />
+        <path d="M12 20v2" />
+        <path d="m4.93 4.93 1.41 1.41" />
+        <path d="m17.66 17.66 1.41 1.41" />
+        <path d="M2 12h2" />
+        <path d="M20 12h2" />
+        <path d="m6.34 17.66-1.41 1.41" />
+        <path d="m19.07 4.93-1.41 1.41" />
+      </svg>
+    ),
+  },
+  {
+    name: "Dark Stealth",
+    desc: "Night missions, longer battery",
+    active: true,
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+      </svg>
+    ),
+  },
+  {
+    name: "System Auto",
+    desc: "Follows device setting",
+    active: false,
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <rect x="8" y="3" width="8" height="18" rx="2" />
+        <path d="M12 18h.01" />
+        <path d="M3.5 9.5a4.5 4.5 0 0 0 0 5" />
+        <path d="m3.5 9.5 1.4 1.6" />
+        <path d="m3.5 14.5 1.4-1.6" />
+      </svg>
+    ),
+  },
+];
+
+const MODULES = [
+  {
+    number: 1,
+    screen: "/sos-screen.png",
+    screenWidth: 477,
+    screenHeight: 523,
+    alt: "iTantra SOS distress beacon screen",
+    cardClass: "bg-[#FBEDEE]",
+    iconBgClass: "bg-[#E5484D]",
+    dotClass: "bg-[#E5484D]",
+    titleLines: ["1. SOS Distress Beacon"],
+    bullets: [
+      "1-Tap emergency alert",
+      "Auto voice broadcast",
+      "250m mesh radius",
+      "10 Indian regional languages",
+    ],
+    icon: <BellIcon className="h-7 w-7" />,
+  },
+  {
+    number: 2,
+    screen: "/walkie-talkie-screen.png",
+    screenWidth: 408,
+    screenHeight: 612,
+    alt: "iTantra walkie-talkie voice mesh screen",
+    cardClass: "bg-[#E9F0FB]",
+    iconBgClass: "bg-[#3D82F6]",
+    dotClass: "bg-[#3D82F6]",
+    titleLines: ["2. Walkie-Talkie", "(Tactical Team Comms)"],
+    bullets: [
+      "Direct P2P voice mesh",
+      "Hands-free Auto-VAD",
+      "Live peer roster & signal indicators",
+      "Mute / Speaker / Earpiece controls",
+    ],
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-7 w-7"
+        aria-hidden="true"
+      >
+        <path d="M9 9V4a1 1 0 0 1 2 0v5" />
+        <rect x="7" y="9" width="10" height="12" rx="2" />
+        <path d="M10 13h4" />
+        <path d="M10 17h4" />
+      </svg>
+    ),
+  },
+  {
+    number: 3,
+    screen: "/rescuer-screen.png",
+    screenWidth: 408,
+    screenHeight: 612,
+    alt: "iTantra search and rescue radar screen",
+    cardClass: "bg-[#E9F5EE]",
+    iconBgClass: "bg-[#27A567]",
+    dotClass: "bg-[#27A567]",
+    titleLines: ["3. Search & Rescue", "(SAR) Radar Hub"],
+    bullets: [
+      "Compass-oriented minimap",
+      "Victim pinpoints & distance",
+      "1-to-1 or broadcast voice link",
+      "Edge-to-edge field view",
+    ],
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-7 w-7"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88" />
+      </svg>
+    ),
+  },
+  {
+    number: 4,
+    screen: "/settings-screen.png",
+    screenWidth: 408,
+    screenHeight: 612,
+    alt: "iTantra settings and neural model hub screen",
+    cardClass: "bg-[#EFEAFB]",
+    iconBgClass: "bg-[#7C5CF6]",
+    dotClass: "bg-[#7C5CF6]",
+    titleLines: ["4. Settings &", "Neural model Hub"],
+    bullets: [
+      "On-device AI management",
+      "Safe model deletion",
+      "1-tap model restore",
+      "Tactical mesh tuning",
+      "Sensor diagnostics",
+    ],
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-7 w-7"
+        aria-hidden="true"
+      >
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    ),
+  },
+];
+
 export default function Home() {
   return (
     <main className="flex-1 bg-white">
@@ -141,15 +397,6 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B1220]/85 via-transparent via-[28%] to-transparent" />
           <div className="absolute inset-0 bg-[#0B1220]/70 lg:hidden" />
         </div>
-
-        <Image
-          src="/hero-white-signal.png"
-          alt=""
-          width={510}
-          height={489}
-          preload
-          className="pointer-events-none absolute right-2 top-14 z-0 hidden h-auto w-40 sm:block lg:right-16 lg:top-16 lg:w-48"
-        />
 
         <header className="relative z-20 mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-6 sm:px-10">
           <a href="#home" className="flex items-center gap-2.5">
@@ -245,7 +492,15 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="relative mx-auto w-fit">
+            <Image
+              src="/hero-white-signal.png"
+              alt=""
+              width={510}
+              height={489}
+              preload
+              className="pointer-events-none absolute -right-[14%] -top-[6%] z-0 h-auto w-[44%]"
+            />
             <Image
               src="/device-mockup.png"
               alt="iTantra app showing the emergency SOS screen"
@@ -261,12 +516,334 @@ export default function Home() {
           aria-hidden="true"
           viewBox="0 0 1440 150"
           preserveAspectRatio="none"
-          fill="#ffffff"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[90px] w-full sm:h-[120px] lg:h-[16svh]"
+          fill="#F7F9FB"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[100px] w-full sm:h-[130px] lg:h-[18svh]"
         >
-          <path d="M0 150V133C420 124 900 96 1440 14v136Z" />
+          <path d="M0 150V108C200 126 380 138 620 136C860 134 1140 72 1440 8V150Z" />
         </svg>
       </section>
+
+      <section id="features" className="bg-[#F7F9FB] px-6 py-20 sm:px-10 lg:py-24">
+        <div className="mx-auto w-full max-w-[1200px]">
+          <p className="text-center text-[13px] font-bold uppercase tracking-[0.16em] text-[#E5484D] lg:text-sm">
+            Core Mission Modules
+          </p>
+          <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-[#1B2A41] sm:text-4xl lg:text-[40px]">
+            Four Powerful Tools. One Mission.
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-slate-400 lg:text-lg">
+            From distress alerts to rescue coordination, iTantra gives you
+            everything you need to communicate, navigate and save lives — even
+            when there&apos;s no signal.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 gap-7 md:grid-cols-2 lg:mt-16">
+            {MODULES.map((module) => (
+              <article
+                key={module.number}
+                className={`flex flex-col items-center gap-6 rounded-3xl p-6 md:flex-row md:p-7 ${module.cardClass}`}
+              >
+                <Image
+                  src={module.screen}
+                  alt={module.alt}
+                  width={module.screenWidth}
+                  height={module.screenHeight}
+                  className="h-[200px] w-auto shrink-0 sm:h-[240px] lg:h-[280px]"
+                />
+                <div className="w-full flex-1 md:w-auto">
+                  <span
+                    className={`flex h-14 w-14 items-center justify-center rounded-full text-white ${module.iconBgClass}`}
+                  >
+                    {module.icon}
+                  </span>
+                  <h3 className="mt-5 text-xl font-bold leading-snug text-[#1B2A41] lg:text-[22px]">
+                    {module.titleLines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </h3>
+                  <ul className="mt-4 space-y-2.5">
+                    {module.bullets.map((bullet) => (
+                      <li
+                        key={bullet}
+                        className="flex items-start gap-2.5 text-[15px] leading-snug text-slate-500"
+                      >
+                        <span
+                          className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full ${module.dotClass}`}
+                        />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="themes" className="bg-white">
+        <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <div className="px-6 py-16 sm:px-10 lg:py-20 lg:pl-16 xl:pl-24">
+            <h2 className="text-3xl font-bold tracking-tight text-[#1B2A41] xl:text-[34px]">
+              Light &amp; Dark Stealth Theming
+            </h2>
+            <p className="mt-3 text-base text-slate-500 lg:text-lg">
+              Choose your style. Stay focused. Always.
+            </p>
+            <div className="mt-10 grid max-w-[720px] grid-cols-1 gap-4 sm:grid-cols-3">
+              {THEMES.map((theme) => (
+                <div
+                  key={theme.name}
+                  className={`rounded-xl p-5 ${
+                    theme.active
+                      ? "bg-[#0B1220]"
+                      : "border border-slate-100 bg-white shadow-sm"
+                  }`}
+                >
+                  <span
+                    className={`flex h-10 w-10 items-center justify-center rounded-lg ${
+                      theme.active
+                        ? "bg-white/10 text-white"
+                        : "bg-slate-100 text-slate-600"
+                    }`}
+                  >
+                    {theme.icon}
+                  </span>
+                  <p
+                    className={`mt-4 text-[15px] font-semibold ${
+                      theme.active ? "text-white" : "text-[#1B2A41]"
+                    }`}
+                  >
+                    {theme.name}
+                  </p>
+                  <p className="mt-1 text-xs leading-snug text-slate-400">
+                    {theme.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <Image
+            src="/dark-light-screen.png"
+            alt="iTantra app shown in light and dark themes on two phones"
+            width={2430}
+            height={1728}
+            className="h-auto w-full"
+          />
+        </div>
+      </section>
+
+      <section id="trusted" className="bg-white px-6 pb-16 pt-8 sm:px-10 lg:pt-12">
+        <div className="mx-auto w-full max-w-[1200px]">
+          <h2 className="text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
+            Trusted Across India
+          </h2>
+          <p className="mt-2 text-[15px] text-slate-500">
+            Used by communities, rescue teams and organizations.
+          </p>
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {TRUSTED_BRANDS.map((brand) => (
+              <div
+                key={brand.name}
+                className="flex h-20 items-center justify-center gap-2 rounded-xl border border-slate-100 bg-white px-3 shadow-sm"
+              >
+                {brand.badge ? (
+                  <span
+                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-bold ${brand.badge.class}`}
+                  >
+                    {brand.badge.text}
+                  </span>
+                ) : null}
+                <span
+                  className={`text-center text-[13px] font-bold leading-tight ${brand.nameClass}`}
+                >
+                  {brand.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" className="bg-white px-6 pb-24 pt-8 sm:px-10">
+        <div className="mx-auto w-full max-w-[1200px]">
+          <h2 className="text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
+            What Our Users Say
+          </h2>
+          <p className="mt-2 text-[15px] text-slate-500">
+            Real people. Real stories. Real impact.
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {TESTIMONIALS.map((testimonial) => (
+              <div
+                key={testimonial.name}
+                className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm"
+              >
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold ${testimonial.avatarClass}`}
+                  >
+                    {testimonial.name
+                      .split(" ")
+                      .map((part) => part[0])
+                      .join("")}
+                  </span>
+                  <div>
+                    <p className="text-[15px] font-semibold text-[#1B2A41]">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-xs text-slate-400">{testimonial.role}</p>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-slate-500">
+                  {testimonial.quote}
+                </p>
+                <div className="mt-4 flex gap-1 text-[#E5484D]">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <StarIcon key={i} className="h-4 w-4" />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="download" className="bg-white px-4 pb-12 pt-6 sm:px-6">
+        <div className="relative mx-auto w-full max-w-[1200px]">
+          <div className="relative isolate overflow-hidden rounded-3xl bg-[#0B1220]">
+            <Image
+              src="/footer.avif"
+              alt=""
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-[#0B1220]/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1220] from-[15%] via-[#0B1220]/55 via-[50%] to-[#0B1220]/10 to-[90%]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0B1220]/50 via-transparent via-[35%] to-[#0B1220]/60" />
+
+            <div className="relative z-10 flex min-h-[420px] flex-col p-8 sm:p-10 lg:min-h-[370px] lg:p-12">
+              <div className="max-w-[520px]">
+                <div className="flex items-center gap-2.5">
+                  <Image
+                    src="/hero-white-signal.png"
+                    alt="iTantra logo"
+                    width={510}
+                    height={489}
+                    className="h-9 w-9 object-contain"
+                  />
+                  <span className="text-xl font-bold tracking-tight text-white">iTantra</span>
+                </div>
+                <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  Be Prepared. Be Connected.
+                </h2>
+                <p className="mt-3 max-w-[400px] text-sm leading-relaxed text-white/75">
+                  Download iTantra today and be part of a safer, stronger, more resilient
+                  tomorrow.
+                </p>
+                <div className="mt-7 flex flex-wrap items-center gap-4">
+                  <a
+                    href="#download"
+                    className="flex items-center gap-3 rounded-xl border border-white/30 bg-black/70 px-5 py-2.5 transition-colors hover:border-white/60"
+                  >
+                    <GooglePlayIcon className="h-7 w-7" />
+                    <span className="flex flex-col text-left leading-tight">
+                      <span className="text-[10px] font-medium uppercase tracking-wider text-white/80">
+                        Get it on
+                      </span>
+                      <span className="text-lg font-semibold text-white">Google Play</span>
+                    </span>
+                  </a>
+                  <a
+                    href="#download"
+                    className="flex items-center gap-3 rounded-xl border border-white/30 bg-black/70 px-5 py-2.5 transition-colors hover:border-white/60"
+                  >
+                    <AppleIcon className="h-6 w-6 text-white" />
+                    <span className="flex flex-col text-left leading-tight">
+                      <span className="text-[10px] font-medium uppercase tracking-wider text-white/80">
+                        Download on the
+                      </span>
+                      <span className="text-lg font-semibold text-white">App Store</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 100 100"
+              fill="none"
+              stroke="#E5484D"
+              strokeWidth={9}
+              strokeLinecap="round"
+              className="pointer-events-none absolute left-[62%] top-5 z-10 hidden h-auto w-20 sm:block lg:top-7 lg:w-24"
+            >
+              <path d="M8 68A24 24 0 0 1 32 92" />
+              <path d="M8 50A42 42 0 0 1 50 92" />
+              <path d="M8 32A60 60 0 0 1 68 92" />
+            </svg>
+
+            <Image
+              src="/hands-device.png"
+              alt="Gloved hands holding a phone showing the iTantra emergency SOS screen"
+              width={611}
+              height={408}
+              className="pointer-events-none absolute bottom-0 left-[58%] z-10 h-auto w-[250px] -translate-x-1/2 sm:w-[310px] lg:left-[63%] lg:w-[430px]"
+            />
+
+            <div className="absolute right-5 top-1/2 z-10 hidden -translate-y-1/2 items-center gap-3 sm:flex lg:right-10">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="#E5484D"
+                className="h-5 w-5 shrink-0"
+              >
+                <path d="M12 2c.8 5.4 2.2 8.2 4.6 9.4 1.6.8 3.4 1 5.4.6-5.4 2.2-8.4 5.2-9.4 9-.4 1.4-.8 1.4-1.2 0-1-3.8-4-6.8-9.4-9 2 .4 3.8.2 5.4-.6C10.2 10.2 11.2 7.4 12 2Z" />
+              </svg>
+              <p className="text-right text-lg font-bold leading-snug text-white lg:text-xl">
+                No Signal.
+                <br />
+                No Problem.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-white px-6 py-7 sm:px-10">
+        <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-5 md:flex-row md:justify-between">
+          <a href="#home" className="flex items-center gap-2">
+            <Image
+              src="/hero-white-signal.png"
+              alt="iTantra logo"
+              width={510}
+              height={489}
+              className="h-8 w-8 object-contain"
+            />
+            <span className="text-lg font-bold tracking-tight text-[#1B2A41]">iTantra</span>
+          </a>
+          <nav className="flex items-center gap-7">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm font-medium text-slate-500 transition-colors hover:text-[#E5484D]"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <p className="flex items-center gap-2 text-[13px] text-slate-400">
+            <span>Open Source</span>
+            <span aria-hidden="true">|</span>
+            <span>Apache License 2.0</span>
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }
