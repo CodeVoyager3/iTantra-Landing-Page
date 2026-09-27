@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Float, HoverLift, Parallax, Reveal, SignalArcs } from "@/components/motion";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -384,15 +385,17 @@ export default function Home() {
         id="home"
         className="relative isolate flex min-h-svh flex-col overflow-hidden bg-[#0B1220]"
       >
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/Rescuer bg image.png"
-            alt=""
-            fill
-            sizes="100vw"
-            preload
-            className="object-cover object-[68%_38%]"
-          />
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <Parallax offset={50} className="absolute inset-0 scale-110">
+            <Image
+              src="/Rescuer bg image.png"
+              alt=""
+              fill
+              sizes="100vw"
+              preload
+              className="object-cover object-[68%_38%]"
+            />
+          </Parallax>
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1220] from-[30%] via-[#0B1220]/70 via-[55%] to-[#0B1220]/5 to-[95%]" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B1220]/85 via-transparent via-[28%] to-transparent" />
           <div className="absolute inset-0 bg-[#0B1220]/70 lg:hidden" />
@@ -425,28 +428,35 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto grid w-full max-w-[1200px] flex-1 grid-cols-1 items-center gap-14 px-6 pb-28 pt-6 sm:px-10 lg:grid-cols-2 lg:gap-8 lg:pb-[9svh] lg:pt-2">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5484D]/70 bg-[#E5484D]/15 px-5 py-2">
-              <BellIcon className="h-4 w-4 text-[#E5484D]" />
-              <span className="text-sm font-semibold tracking-wide text-white">
-                Off-Grid&ensp;&bull;&ensp;Mesh&ensp;&bull;&ensp;AI Powered
-              </span>
-            </div>
+            <Reveal y={16} duration={0.5}>
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#E5484D]/70 bg-[#E5484D]/15 px-5 py-2">
+                <BellIcon className="h-4 w-4 text-[#E5484D]" />
+                <span className="text-sm font-semibold tracking-wide text-white">
+                  Off-Grid&ensp;&bull;&ensp;Mesh&ensp;&bull;&ensp;AI Powered
+                </span>
+              </div>
+            </Reveal>
 
-            <h1 className="mt-9 text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl xl:text-[56px]">
-              iTantra
-              <br />
-              <span className="text-[#E5484D]">Saves Lives</span> When
-              <br />
-              Networks Fail
-            </h1>
+            <Reveal delay={0.1}>
+              <h1 className="mt-9 text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl xl:text-[56px]">
+                iTantra
+                <br />
+                <span className="text-[#E5484D]">Saves Lives</span> When
+                <br />
+                Networks Fail
+              </h1>
+            </Reveal>
 
-            <p className="mt-7 max-w-md text-base leading-relaxed text-slate-300 lg:text-lg">
-              The sovereign, off-grid disaster transceiver &amp; tactical rescue
-              mesh. Because in a crisis, every second and every connection
-              matters.
-            </p>
+            <Reveal delay={0.2}>
+              <p className="mt-7 max-w-md text-base leading-relaxed text-slate-300 lg:text-lg">
+                The sovereign, off-grid disaster transceiver &amp; tactical rescue
+                mesh. Because in a crisis, every second and every connection
+                matters.
+              </p>
+            </Reveal>
 
-            <div className="mt-14 flex items-stretch divide-x divide-white/20">
+            <Reveal delay={0.3}>
+              <div className="mt-14 flex items-stretch divide-x divide-white/20">
               {HERO_FEATURES.map((feature, i) => (
                 <div
                   key={feature.lines[0]}
@@ -462,9 +472,11 @@ export default function Home() {
                   </p>
                 </div>
               ))}
-            </div>
+              </div>
+            </Reveal>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Reveal delay={0.4}>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="#download"
                 className="flex items-center gap-3 rounded-xl border border-white/30 bg-black/70 px-6 py-3 transition-colors hover:border-white/60"
@@ -489,10 +501,12 @@ export default function Home() {
                   <span className="text-xl font-semibold text-white">App Store</span>
                 </span>
               </a>
-            </div>
+              </div>
+            </Reveal>
           </div>
 
-          <div className="relative mx-auto w-fit">
+          <Reveal delay={0.25} y={48} duration={0.9}>
+            <Float amplitude={10} duration={7} className="relative mx-auto w-fit">
             <Image
               src="/hero-white-signal.png"
               alt=""
@@ -509,7 +523,8 @@ export default function Home() {
               preload
               className="relative z-10 h-auto w-[230px] drop-shadow-2xl sm:w-[280px] lg:w-[min(330px,40svh)] xl:w-[min(350px,40svh)]"
             />
-          </div>
+            </Float>
+          </Reveal>
         </div>
 
         <svg
@@ -525,24 +540,27 @@ export default function Home() {
 
       <section id="features" className="bg-[#F7F9FB] px-6 py-20 sm:px-10 lg:py-24">
         <div className="mx-auto w-full max-w-[1200px]">
-          <p className="text-center text-[13px] font-bold uppercase tracking-[0.16em] text-[#E5484D] lg:text-sm">
-            Core Mission Modules
-          </p>
-          <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-[#1B2A41] sm:text-4xl lg:text-[40px]">
-            Four Powerful Tools. One Mission.
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-slate-400 lg:text-lg">
-            From distress alerts to rescue coordination, iTantra gives you
-            everything you need to communicate, navigate and save lives — even
-            when there&apos;s no signal.
-          </p>
+          <Reveal>
+            <p className="text-center text-[13px] font-bold uppercase tracking-[0.16em] text-[#E5484D] lg:text-sm">
+              Core Mission Modules
+            </p>
+            <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-[#1B2A41] sm:text-4xl lg:text-[40px]">
+              Four Powerful Tools. One Mission.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-slate-400 lg:text-lg">
+              From distress alerts to rescue coordination, iTantra gives you
+              everything you need to communicate, navigate and save lives — even
+              when there&apos;s no signal.
+            </p>
+          </Reveal>
 
           <div className="mt-12 grid grid-cols-1 gap-7 md:grid-cols-2 lg:mt-16">
-            {MODULES.map((module) => (
-              <article
-                key={module.number}
-                className={`flex flex-col items-center gap-6 rounded-3xl p-6 md:flex-row md:p-7 ${module.cardClass}`}
-              >
+            {MODULES.map((module, i) => (
+              <Reveal key={module.number} delay={i * 0.1} y={32} className="h-full">
+                <HoverLift className="h-full">
+                  <article
+                    className={`flex h-full flex-col items-center gap-6 rounded-3xl p-6 md:flex-row md:p-7 ${module.cardClass}`}
+                  >
                 <Image
                   src={module.screen}
                   alt={module.alt}
@@ -577,7 +595,9 @@ export default function Home() {
                     ))}
                   </ul>
                 </div>
-              </article>
+                  </article>
+                </HoverLift>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -586,17 +606,19 @@ export default function Home() {
       <section id="themes" className="bg-white">
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
           <div className="px-6 py-16 sm:px-10 lg:py-20 lg:pl-16 xl:pl-24">
-            <h2 className="text-3xl font-bold tracking-tight text-[#1B2A41] xl:text-[34px]">
-              Light &amp; Dark Stealth Theming
-            </h2>
-            <p className="mt-3 text-base text-slate-500 lg:text-lg">
-              Choose your style. Stay focused. Always.
-            </p>
+            <Reveal>
+              <h2 className="text-3xl font-bold tracking-tight text-[#1B2A41] xl:text-[34px]">
+                Light &amp; Dark Stealth Theming
+              </h2>
+              <p className="mt-3 text-base text-slate-500 lg:text-lg">
+                Choose your style. Stay focused. Always.
+              </p>
+            </Reveal>
             <div className="mt-10 grid max-w-[720px] grid-cols-1 gap-4 sm:grid-cols-3">
-              {THEMES.map((theme) => (
-                <div
-                  key={theme.name}
-                  className={`rounded-xl p-5 ${
+              {THEMES.map((theme, i) => (
+                <Reveal key={theme.name} delay={0.15 + i * 0.1} y={20}>
+                  <div
+                    className={`h-full rounded-xl p-5 ${
                     theme.active
                       ? "bg-[#0B1220]"
                       : "border border-slate-100 bg-white shadow-sm"
@@ -621,34 +643,37 @@ export default function Home() {
                   <p className="mt-1 text-xs leading-snug text-slate-400">
                     {theme.desc}
                   </p>
-                </div>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
-          <Image
-            src="/dark-light-screen.png"
-            alt="iTantra app shown in light and dark themes on two phones"
-            width={2430}
-            height={1728}
-            className="h-auto w-full"
-          />
+          <Reveal delay={0.15} y={32} duration={0.8}>
+            <Image
+              src="/dark-light-screen.png"
+              alt="iTantra app shown in light and dark themes on two phones"
+              width={2430}
+              height={1728}
+              className="h-auto w-full"
+            />
+          </Reveal>
         </div>
       </section>
 
       <section id="trusted" className="bg-white px-6 pb-16 pt-8 sm:px-10 lg:pt-12">
         <div className="mx-auto w-full max-w-[1200px]">
-          <h2 className="text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
-            Trusted Across India
-          </h2>
-          <p className="mt-2 text-[15px] text-slate-500">
-            Used by communities, rescue teams and organizations.
-          </p>
+          <Reveal>
+            <h2 className="text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
+              Trusted Across India
+            </h2>
+            <p className="mt-2 text-[15px] text-slate-500">
+              Used by communities, rescue teams and organizations.
+            </p>
+          </Reveal>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {TRUSTED_BRANDS.map((brand) => (
-              <div
-                key={brand.name}
-                className="flex h-20 items-center justify-center gap-2 rounded-xl border border-slate-100 bg-white px-3 shadow-sm"
-              >
+            {TRUSTED_BRANDS.map((brand, i) => (
+              <Reveal key={brand.name} delay={i * 0.06} y={16} duration={0.5}>
+                <div className="flex h-20 items-center justify-center gap-2 rounded-xl border border-slate-100 bg-white px-3 shadow-sm">
                 {brand.badge ? (
                   <span
                     className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-bold ${brand.badge.class}`}
@@ -661,7 +686,8 @@ export default function Home() {
                 >
                   {brand.name}
                 </span>
-              </div>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -669,58 +695,64 @@ export default function Home() {
 
       <section id="testimonials" className="bg-white px-6 pb-24 pt-8 sm:px-10">
         <div className="mx-auto w-full max-w-[1200px]">
-          <h2 className="text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
-            What Our Users Say
-          </h2>
-          <p className="mt-2 text-[15px] text-slate-500">
-            Real people. Real stories. Real impact.
-          </p>
+          <Reveal>
+            <h2 className="text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
+              What Our Users Say
+            </h2>
+            <p className="mt-2 text-[15px] text-slate-500">
+              Real people. Real stories. Real impact.
+            </p>
+          </Reveal>
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {TESTIMONIALS.map((testimonial) => (
-              <div
-                key={testimonial.name}
-                className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <span
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold ${testimonial.avatarClass}`}
-                  >
-                    {testimonial.name
-                      .split(" ")
-                      .map((part) => part[0])
-                      .join("")}
-                  </span>
-                  <div>
-                    <p className="text-[15px] font-semibold text-[#1B2A41]">
-                      {testimonial.name}
+            {TESTIMONIALS.map((testimonial, i) => (
+              <Reveal key={testimonial.name} delay={i * 0.1} y={28} className="h-full">
+                <HoverLift className="h-full">
+                  <div className="flex h-full flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <span
+                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold ${testimonial.avatarClass}`}
+                      >
+                        {testimonial.name
+                          .split(" ")
+                          .map((part) => part[0])
+                          .join("")}
+                      </span>
+                      <div>
+                        <p className="text-[15px] font-semibold text-[#1B2A41]">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-xs text-slate-400">{testimonial.role}</p>
+                      </div>
+                    </div>
+                    <p className="mt-4 text-sm leading-relaxed text-slate-500">
+                      {testimonial.quote}
                     </p>
-                    <p className="text-xs text-slate-400">{testimonial.role}</p>
+                    <div className="mt-4 flex gap-1 text-[#E5484D]">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <StarIcon key={i} className="h-4 w-4" />
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-slate-500">
-                  {testimonial.quote}
-                </p>
-                <div className="mt-4 flex gap-1 text-[#E5484D]">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <StarIcon key={i} className="h-4 w-4" />
-                  ))}
-                </div>
-              </div>
+                </HoverLift>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       <section id="download" className="bg-white px-4 pb-12 pt-6 sm:px-6">
-        <div className="relative mx-auto w-full max-w-[1200px]">
-          <div className="relative isolate overflow-hidden rounded-3xl bg-[#0B1220]">
-            <Image
-              src="/footer.avif"
-              alt=""
-              fill
-              sizes="(max-width: 1200px) 100vw, 1200px"
-              className="object-cover object-center"
-            />
+        <Reveal y={32} duration={0.8}>
+          <div className="relative mx-auto w-full max-w-[1200px]">
+            <div className="relative isolate overflow-hidden rounded-3xl bg-[#0B1220]">
+              <Parallax offset={30} className="absolute inset-0 scale-105">
+                <Image
+                  src="/footer.avif"
+                  alt=""
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  className="object-cover object-center"
+                />
+              </Parallax>
             <div className="absolute inset-0 bg-[#0B1220]/50" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1220] from-[15%] via-[#0B1220]/55 via-[50%] to-[#0B1220]/10 to-[90%]" />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0B1220]/50 via-transparent via-[35%] to-[#0B1220]/60" />
@@ -773,19 +805,7 @@ export default function Home() {
               </div>
             </div>
 
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 100 100"
-              fill="none"
-              stroke="#E5484D"
-              strokeWidth={9}
-              strokeLinecap="round"
-              className="pointer-events-none absolute left-[62%] top-5 z-10 hidden h-auto w-20 sm:block lg:top-7 lg:w-24"
-            >
-              <path d="M8 68A24 24 0 0 1 32 92" />
-              <path d="M8 50A42 42 0 0 1 50 92" />
-              <path d="M8 32A60 60 0 0 1 68 92" />
-            </svg>
+            <SignalArcs className="pointer-events-none absolute left-[62%] top-5 z-10 hidden h-auto w-20 sm:block lg:top-7 lg:w-24" />
 
             <Image
               src="/hands-device.png"
@@ -811,11 +831,13 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </div>
+          </div>
+        </Reveal>
       </section>
 
       <footer className="bg-white px-6 py-7 sm:px-10">
-        <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-5 md:flex-row md:justify-between">
+        <Reveal y={16} duration={0.5}>
+          <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-5 md:flex-row md:justify-between">
           <a href="#home" className="flex items-center gap-2">
             <Image
               src="/hero-white-signal.png"
@@ -842,7 +864,8 @@ export default function Home() {
             <span aria-hidden="true">|</span>
             <span>Apache License 2.0</span>
           </p>
-        </div>
+          </div>
+        </Reveal>
       </footer>
     </main>
   );
