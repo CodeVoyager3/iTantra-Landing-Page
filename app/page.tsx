@@ -1,16 +1,19 @@
 import Image from "next/image";
 import {
   Float,
-  HoverLift,
   Parallax,
   Reveal,
   SignalArcs,
 } from "@/components/motion";
+import MissionFeatures from "@/components/ui/mission-features";
+import Testimonials1 from "@/components/ui/testimonials";
+import TrustedGrid from "@/components/ui/trusted-grid";
+import Team4 from "@/components/ui/team";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "Features", href: "#features" },
-  { label: "Screenshots", href: "#screenshots" },
+  { label: "Team", href: "#team" },
   { label: "Download", href: "#download" },
 ];
 
@@ -128,66 +131,6 @@ function BellIcon({ className }: { className?: string }) {
   );
 }
 
-/* ---------- Trusted organisations (professional wordmarks) ---------- */
-
-const TRUSTED_BRANDS = [
-  { name: "Hindustan Petroleum", short: "HP", wordmarkClass: "font-extrabold italic tracking-tight" },
-  { name: "IndianOil", short: "IO", wordmarkClass: "font-extrabold tracking-tight" },
-  { name: "TATA", short: "TA", wordmarkClass: "font-serif font-bold tracking-[0.18em]" },
-  { name: "Reliance Industries", short: "RI", wordmarkClass: "font-serif font-bold tracking-tight" },
-  { name: "ONGC", short: "ON", wordmarkClass: "font-extrabold tracking-[0.12em]" },
-  { name: "Indian Railways", short: "IR", wordmarkClass: "font-bold tracking-tight" },
-];
-
-const TRUST_STATS = [
-  { value: "28+", label: "States and UTs" },
-  { value: "500+", label: "Rescue teams" },
-  { value: "2M+", label: "Citizens protected" },
-  { value: "4.9/5", label: "Average rating" },
-];
-
-/* ---------- Testimonials (professional) ---------- */
-
-const TESTIMONIALS = [
-  {
-    name: "Neha Sharma",
-    role: "Volunteer, Wayanad",
-    initials: "NS",
-    quote:
-      "iTantra helped us coordinate rescue efforts after the landslide. It worked reliably even without mobile signal.",
-  },
-  {
-    name: "Rohit Singh",
-    role: "First Responder, NDRF",
-    initials: "RS",
-    quote:
-      "The search and rescue radar helped our team locate victims faster during flood operations.",
-  },
-  {
-    name: "Priya Nair",
-    role: "Community Lead, Kochi",
-    initials: "PN",
-    quote:
-      "Clear, dependable and easy to use. It has become part of our community preparedness kit.",
-  },
-];
-
-function StarIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-    </svg>
-  );
-}
-
-function QuoteMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M10 8H6a4 4 0 0 0-4 4v6h7v-7H6.5A2.5 2.5 0 0 1 9 8.5V8h1Zm12 0h-4a4 4 0 0 0-4 4v6h7v-7h-2.5A2.5 2.5 0 0 1 21 8.5V8h1Z" />
-    </svg>
-  );
-}
-
 const THEMES = [
   {
     name: "Light Air",
@@ -255,126 +198,6 @@ const THEMES = [
         <path d="M3.5 9.5a4.5 4.5 0 0 0 0 5" />
         <path d="m3.5 9.5 1.4 1.6" />
         <path d="m3.5 14.5 1.4-1.6" />
-      </svg>
-    ),
-  },
-];
-
-const MODULES = [
-  {
-    number: 1,
-    screen: "/sos-screen.png",
-    screenWidth: 477,
-    screenHeight: 523,
-    alt: "iTantra SOS distress beacon screen",
-    cardClass: "bg-[#FBEDEE]",
-    iconBgClass: "bg-[#E5484D]",
-    dotClass: "bg-[#E5484D]",
-    titleLines: ["1. SOS Distress Beacon"],
-    bullets: [
-      "1-Tap emergency alert",
-      "Auto voice broadcast",
-      "250m mesh radius",
-      "10 Indian regional languages",
-    ],
-    icon: <BellIcon className="h-7 w-7" />,
-  },
-  {
-    number: 2,
-    screen: "/walkie-talkie-screen.png",
-    screenWidth: 408,
-    screenHeight: 612,
-    alt: "iTantra walkie-talkie voice mesh screen",
-    cardClass: "bg-[#E9F0FB]",
-    iconBgClass: "bg-[#3D82F6]",
-    dotClass: "bg-[#3D82F6]",
-    titleLines: ["2. Walkie-Talkie", "(Tactical Team Comms)"],
-    bullets: [
-      "Direct P2P voice mesh",
-      "Hands-free Auto-VAD",
-      "Live peer roster & signal indicators",
-      "Mute / Speaker / Earpiece controls",
-    ],
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-7 w-7"
-        aria-hidden="true"
-      >
-        <path d="M9 9V4a1 1 0 0 1 2 0v5" />
-        <rect x="7" y="9" width="10" height="12" rx="2" />
-        <path d="M10 13h4" />
-        <path d="M10 17h4" />
-      </svg>
-    ),
-  },
-  {
-    number: 3,
-    screen: "/rescuer-screen.png",
-    screenWidth: 408,
-    screenHeight: 612,
-    alt: "iTantra search and rescue radar screen",
-    cardClass: "bg-[#E9F5EE]",
-    iconBgClass: "bg-[#27A567]",
-    dotClass: "bg-[#27A567]",
-    titleLines: ["3. Search & Rescue", "(SAR) Radar Hub"],
-    bullets: [
-      "Compass-oriented minimap",
-      "Victim pinpoints & distance",
-      "1-to-1 or broadcast voice link",
-      "Edge-to-edge field view",
-    ],
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-7 w-7"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88" />
-      </svg>
-    ),
-  },
-  {
-    number: 4,
-    screen: "/settings-screen.png",
-    screenWidth: 408,
-    screenHeight: 612,
-    alt: "iTantra settings and neural model hub screen",
-    cardClass: "bg-[#EFEAFB]",
-    iconBgClass: "bg-[#7C5CF6]",
-    dotClass: "bg-[#7C5CF6]",
-    titleLines: ["4. Settings &", "Neural model Hub"],
-    bullets: [
-      "On-device AI management",
-      "Safe model deletion",
-      "1-tap model restore",
-      "Tactical mesh tuning",
-      "Sensor diagnostics",
-    ],
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-7 w-7"
-        aria-hidden="true"
-      >
-        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-        <circle cx="12" cy="12" r="3" />
       </svg>
     ),
   },
@@ -540,68 +363,7 @@ export default function Home() {
       </section>
 
       <section id="features" className="-mt-px bg-[#F7F9FB] px-6 py-20 sm:px-10 lg:py-24">
-        <div className="mx-auto w-full max-w-[1200px]">
-          <Reveal>
-            <p className="text-center text-[13px] font-bold uppercase tracking-[0.16em] text-[#E5484D] lg:text-sm">
-              Core Mission Modules
-            </p>
-            <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-[#1B2A41] sm:text-4xl lg:text-[40px]">
-              Four Powerful Tools. One Mission.
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-slate-400 lg:text-lg">
-              From distress alerts to rescue coordination, iTantra gives you
-              everything you need to communicate, navigate and save lives — even
-              when there&apos;s no signal.
-            </p>
-          </Reveal>
-
-          <div className="mt-12 grid grid-cols-1 gap-7 md:grid-cols-2 lg:mt-16">
-            {MODULES.map((module, i) => (
-              <Reveal key={module.number} delay={i * 0.1} y={32} className="h-full">
-                <HoverLift className="h-full">
-                  <article
-                    className={`flex h-full flex-col items-center gap-6 rounded-3xl p-6 md:flex-row md:p-7 ${module.cardClass}`}
-                  >
-                <Image
-                  src={module.screen}
-                  alt={module.alt}
-                  width={module.screenWidth}
-                  height={module.screenHeight}
-                  className="h-[200px] w-auto shrink-0 sm:h-[240px] lg:h-[280px]"
-                />
-                <div className="w-full flex-1 md:w-auto">
-                  <span
-                    className={`flex h-14 w-14 items-center justify-center rounded-full text-white ${module.iconBgClass}`}
-                  >
-                    {module.icon}
-                  </span>
-                  <h3 className="mt-5 text-xl font-bold leading-snug text-[#1B2A41] lg:text-[22px]">
-                    {module.titleLines.map((line) => (
-                      <span key={line} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </h3>
-                  <ul className="mt-4 space-y-2.5">
-                    {module.bullets.map((bullet) => (
-                      <li
-                        key={bullet}
-                        className="flex items-start gap-2.5 text-[15px] leading-snug text-slate-500"
-                      >
-                        <span
-                          className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full ${module.dotClass}`}
-                        />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                  </article>
-                </HoverLift>
-              </Reveal>
-            ))}
-          </div>
-        </div>
+        <MissionFeatures />
       </section>
 
       <section id="themes" className="bg-white">
@@ -661,100 +423,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="trusted" className="bg-white px-6 pb-14 pt-10 sm:px-10 lg:pt-12">
-        <div className="mx-auto w-full max-w-[1200px]">
-          <Reveal>
-            <div className="max-w-2xl">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-                Trusted across India
-              </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
-                Used by communities, rescue teams and organisations
-              </h2>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1} y={16}>
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-              {TRUSTED_BRANDS.map((brand) => (
-                <div
-                  key={brand.name}
-                  title={brand.name}
-                  className="flex h-[84px] flex-col items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 transition-colors hover:border-slate-300 hover:bg-slate-50"
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-slate-100 text-[11px] font-bold text-slate-600">
-                    {brand.short}
-                  </span>
-                  <span className={`text-center text-[12px] leading-tight text-slate-600 ${brand.wordmarkClass}`}>
-                    {brand.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.15} y={16}>
-            <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 sm:grid-cols-4">
-              {TRUST_STATS.map((stat) => (
-                <div key={stat.label} className="bg-white px-5 py-4 text-center">
-                  <dt className="order-2 mt-1 block text-[12px] font-medium text-slate-500">
-                    {stat.label}
-                  </dt>
-                  <dd className="order-1 text-xl font-bold tracking-tight text-[#1B2A41]">
-                    {stat.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-        </div>
+      <section id="trusted" className="bg-white px-6 py-14 sm:px-10 lg:py-16">
+        <TrustedGrid />
       </section>
 
       <section id="testimonials" className="bg-slate-50 px-6 py-16 sm:px-10 lg:py-20">
-        <div className="mx-auto w-full max-w-[1200px]">
-          <Reveal>
-            <div className="max-w-2xl">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-                Testimonials
-              </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
-                What our users say
-              </h2>
-              <p className="mt-2 text-[15px] text-slate-500">
-                Feedback from volunteers, responders and community leads.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
-            {TESTIMONIALS.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.08} y={20} className="h-full">
-                <figure className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6">
-                  <QuoteMark className="h-6 w-6 text-slate-300" />
-                  <blockquote className="mt-3 flex-1 text-[14.5px] leading-relaxed text-slate-600">
-                    {t.quote}
-                  </blockquote>
-                  <div className="mt-4 flex gap-1 text-amber-400" aria-label="Rated 5 out of 5">
-                    {Array.from({ length: 5 }).map((_, s) => (
-                      <StarIcon key={s} className="h-4 w-4" />
-                    ))}
-                  </div>
-                  <figcaption className="mt-4 flex items-center gap-3 border-t border-slate-100 pt-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-[13px] font-bold text-slate-600">
-                      {t.initials}
-                    </span>
-                    <span>
-                      <span className="block text-[14px] font-semibold text-[#1B2A41]">
-                        {t.name}
-                      </span>
-                      <span className="block text-xs text-slate-500">{t.role}</span>
-                    </span>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-        </div>
+        <Testimonials1 />
       </section>
 
       <section id="download" className="bg-white px-4 pb-12 pt-6 sm:px-6">
@@ -849,6 +523,12 @@ export default function Home() {
             </div>
           </div>
           </div>
+        </Reveal>
+      </section>
+
+      <section id="team" className="bg-[#F7F9FB] px-6 py-16 sm:px-10 lg:py-20">
+        <Reveal y={24}>
+          <Team4 />
         </Reveal>
       </section>
 
