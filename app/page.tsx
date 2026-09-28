@@ -6,7 +6,6 @@ import {
   Reveal,
   SignalArcs,
 } from "@/components/motion";
-import { ThemePicker } from "@/components/theme-picker";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -189,6 +188,78 @@ function QuoteMark({ className }: { className?: string }) {
   );
 }
 
+const THEMES = [
+  {
+    name: "Light Air",
+    desc: "Day mode, high clarity",
+    active: false,
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2" />
+        <path d="M12 20v2" />
+        <path d="m4.93 4.93 1.41 1.41" />
+        <path d="m17.66 17.66 1.41 1.41" />
+        <path d="M2 12h2" />
+        <path d="M20 12h2" />
+        <path d="m6.34 17.66-1.41 1.41" />
+        <path d="m19.07 4.93-1.41 1.41" />
+      </svg>
+    ),
+  },
+  {
+    name: "Dark Stealth",
+    desc: "Night missions, longer battery",
+    active: true,
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+      </svg>
+    ),
+  },
+  {
+    name: "System Auto",
+    desc: "Follows device setting",
+    active: false,
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <rect x="8" y="3" width="8" height="18" rx="2" />
+        <path d="M12 18h.01" />
+        <path d="M3.5 9.5a4.5 4.5 0 0 0 0 5" />
+        <path d="m3.5 9.5 1.4 1.6" />
+        <path d="m3.5 14.5 1.4-1.6" />
+      </svg>
+    ),
+  },
+];
+
 const MODULES = [
   {
     number: 1,
@@ -196,7 +267,7 @@ const MODULES = [
     screenWidth: 477,
     screenHeight: 523,
     alt: "iTantra SOS distress beacon screen",
-    cardClass: "bg-[#FBEDEE] dark:bg-[#2B171A]",
+    cardClass: "bg-[#FBEDEE]",
     iconBgClass: "bg-[#E5484D]",
     dotClass: "bg-[#E5484D]",
     titleLines: ["1. SOS Distress Beacon"],
@@ -214,7 +285,7 @@ const MODULES = [
     screenWidth: 408,
     screenHeight: 612,
     alt: "iTantra walkie-talkie voice mesh screen",
-    cardClass: "bg-[#E9F0FB] dark:bg-[#14203A]",
+    cardClass: "bg-[#E9F0FB]",
     iconBgClass: "bg-[#3D82F6]",
     dotClass: "bg-[#3D82F6]",
     titleLines: ["2. Walkie-Talkie", "(Tactical Team Comms)"],
@@ -248,7 +319,7 @@ const MODULES = [
     screenWidth: 408,
     screenHeight: 612,
     alt: "iTantra search and rescue radar screen",
-    cardClass: "bg-[#E9F5EE] dark:bg-[#12261D]",
+    cardClass: "bg-[#E9F5EE]",
     iconBgClass: "bg-[#27A567]",
     dotClass: "bg-[#27A567]",
     titleLines: ["3. Search & Rescue", "(SAR) Radar Hub"],
@@ -280,7 +351,7 @@ const MODULES = [
     screenWidth: 408,
     screenHeight: 612,
     alt: "iTantra settings and neural model hub screen",
-    cardClass: "bg-[#EFEAFB] dark:bg-[#1E1830]",
+    cardClass: "bg-[#EFEAFB]",
     iconBgClass: "bg-[#7C5CF6]",
     dotClass: "bg-[#7C5CF6]",
     titleLines: ["4. Settings &", "Neural model Hub"],
@@ -311,7 +382,7 @@ const MODULES = [
 
 export default function Home() {
   return (
-    <main className="flex-1 bg-white dark:bg-[#0B1220]">
+    <main className="flex-1 bg-white">
       <section
         id="home"
         className="relative isolate flex min-h-svh flex-col overflow-hidden bg-[#0B1220]"
@@ -462,19 +533,19 @@ export default function Home() {
           aria-hidden="true"
           viewBox="0 0 1440 150"
           preserveAspectRatio="none"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[100px] w-full fill-[#F7F9FB] sm:h-[130px] lg:h-[18svh] dark:fill-[#0E1626]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[100px] w-full fill-[#F7F9FB] sm:h-[130px] lg:h-[18svh]"
         >
           <path d="M0 150V108C200 126 380 138 620 136C860 134 1140 72 1440 8V150Z" />
         </svg>
       </section>
 
-      <section id="features" className="-mt-px bg-[#F7F9FB] px-6 py-20 sm:px-10 lg:py-24 dark:bg-[#0E1626]">
+      <section id="features" className="-mt-px bg-[#F7F9FB] px-6 py-20 sm:px-10 lg:py-24">
         <div className="mx-auto w-full max-w-[1200px]">
           <Reveal>
             <p className="text-center text-[13px] font-bold uppercase tracking-[0.16em] text-[#E5484D] lg:text-sm">
               Core Mission Modules
             </p>
-            <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-[#1B2A41] sm:text-4xl lg:text-[40px] dark:text-white">
+            <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-[#1B2A41] sm:text-4xl lg:text-[40px]">
               Four Powerful Tools. One Mission.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-slate-400 lg:text-lg">
@@ -504,7 +575,7 @@ export default function Home() {
                   >
                     {module.icon}
                   </span>
-                  <h3 className="mt-5 text-xl font-bold leading-snug text-[#1B2A41] lg:text-[22px] dark:text-white">
+                  <h3 className="mt-5 text-xl font-bold leading-snug text-[#1B2A41] lg:text-[22px]">
                     {module.titleLines.map((line) => (
                       <span key={line} className="block">
                         {line}
@@ -515,7 +586,7 @@ export default function Home() {
                     {module.bullets.map((bullet) => (
                       <li
                         key={bullet}
-                        className="flex items-start gap-2.5 text-[15px] leading-snug text-slate-500 dark:text-slate-400"
+                        className="flex items-start gap-2.5 text-[15px] leading-snug text-slate-500"
                       >
                         <span
                           className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full ${module.dotClass}`}
@@ -533,18 +604,50 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="themes" className="bg-white dark:bg-[#0B1220]">
+      <section id="themes" className="bg-white">
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
           <div className="px-6 py-16 sm:px-10 lg:py-20 lg:pl-16 xl:pl-24">
             <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-[#1B2A41] xl:text-[34px] dark:text-white">
+              <h2 className="text-3xl font-bold tracking-tight text-[#1B2A41] xl:text-[34px]">
                 Light &amp; Dark Stealth Theming
               </h2>
-              <p className="mt-3 text-base text-slate-500 lg:text-lg dark:text-slate-400">
+              <p className="mt-3 text-base text-slate-500 lg:text-lg">
                 Choose your style. Stay focused. Always.
               </p>
             </Reveal>
-            <ThemePicker />
+            <div className="mt-10 grid max-w-[720px] grid-cols-1 gap-4 sm:grid-cols-3">
+              {THEMES.map((theme, i) => (
+                <Reveal key={theme.name} delay={0.15 + i * 0.1} y={20}>
+                  <div
+                    className={`h-full rounded-xl p-5 ${
+                      theme.active
+                        ? "bg-[#0B1220]"
+                        : "border border-slate-100 bg-white shadow-sm"
+                    }`}
+                  >
+                    <span
+                      className={`flex h-10 w-10 items-center justify-center rounded-lg ${
+                        theme.active
+                          ? "bg-white/10 text-white"
+                          : "bg-slate-100 text-slate-600"
+                      }`}
+                    >
+                      {theme.icon}
+                    </span>
+                    <p
+                      className={`mt-4 text-[15px] font-semibold ${
+                        theme.active ? "text-white" : "text-[#1B2A41]"
+                      }`}
+                    >
+                      {theme.name}
+                    </p>
+                    <p className="mt-1 text-xs leading-snug text-slate-400">
+                      {theme.desc}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
           <Reveal delay={0.15} y={32} duration={0.8}>
             <Image
@@ -558,14 +661,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="trusted" className="bg-white px-6 pb-14 pt-10 sm:px-10 lg:pt-12 dark:bg-[#0B1220]">
+      <section id="trusted" className="bg-white px-6 pb-14 pt-10 sm:px-10 lg:pt-12">
         <div className="mx-auto w-full max-w-[1200px]">
           <Reveal>
             <div className="max-w-2xl">
               <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                 Trusted across India
               </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px] dark:text-white">
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
                 Used by communities, rescue teams and organisations
               </h2>
             </div>
@@ -577,12 +680,12 @@ export default function Home() {
                 <div
                   key={brand.name}
                   title={brand.name}
-                  className="flex h-[84px] flex-col items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 transition-colors hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:hover:bg-white/10"
+                  className="flex h-[84px] flex-col items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 transition-colors hover:border-slate-300 hover:bg-slate-50"
                 >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-slate-100 text-[11px] font-bold text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-slate-100 text-[11px] font-bold text-slate-600">
                     {brand.short}
                   </span>
-                  <span className={`text-center text-[12px] leading-tight text-slate-600 dark:text-slate-300 ${brand.wordmarkClass}`}>
+                  <span className={`text-center text-[12px] leading-tight text-slate-600 ${brand.wordmarkClass}`}>
                     {brand.name}
                   </span>
                 </div>
@@ -591,13 +694,13 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.15} y={16}>
-            <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 sm:grid-cols-4 dark:border-white/10 dark:bg-white/10">
+            <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 sm:grid-cols-4">
               {TRUST_STATS.map((stat) => (
-                <div key={stat.label} className="bg-white px-5 py-4 text-center dark:bg-[#0E1626]">
-                  <dt className="order-2 mt-1 block text-[12px] font-medium text-slate-500 dark:text-slate-400">
+                <div key={stat.label} className="bg-white px-5 py-4 text-center">
+                  <dt className="order-2 mt-1 block text-[12px] font-medium text-slate-500">
                     {stat.label}
                   </dt>
-                  <dd className="order-1 text-xl font-bold tracking-tight text-[#1B2A41] dark:text-white">
+                  <dd className="order-1 text-xl font-bold tracking-tight text-[#1B2A41]">
                     {stat.value}
                   </dd>
                 </div>
@@ -607,14 +710,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="testimonials" className="bg-slate-50 px-6 py-16 sm:px-10 lg:py-20 dark:bg-[#0E1626]">
+      <section id="testimonials" className="bg-slate-50 px-6 py-16 sm:px-10 lg:py-20">
         <div className="mx-auto w-full max-w-[1200px]">
           <Reveal>
             <div className="max-w-2xl">
               <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                 Testimonials
               </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px] dark:text-white">
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
                 What our users say
               </h2>
               <p className="mt-2 text-[15px] text-slate-500">
@@ -626,9 +729,9 @@ export default function Home() {
           <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
             {TESTIMONIALS.map((t, i) => (
               <Reveal key={t.name} delay={i * 0.08} y={20} className="h-full">
-                <figure className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-                  <QuoteMark className="h-6 w-6 text-slate-300 dark:text-slate-600" />
-                  <blockquote className="mt-3 flex-1 text-[14.5px] leading-relaxed text-slate-600 dark:text-slate-300">
+                <figure className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6">
+                  <QuoteMark className="h-6 w-6 text-slate-300" />
+                  <blockquote className="mt-3 flex-1 text-[14.5px] leading-relaxed text-slate-600">
                     {t.quote}
                   </blockquote>
                   <div className="mt-4 flex gap-1 text-amber-400" aria-label="Rated 5 out of 5">
@@ -636,15 +739,15 @@ export default function Home() {
                       <StarIcon key={s} className="h-4 w-4" />
                     ))}
                   </div>
-                  <figcaption className="mt-4 flex items-center gap-3 border-t border-slate-100 pt-4 dark:border-white/10">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-[13px] font-bold text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                  <figcaption className="mt-4 flex items-center gap-3 border-t border-slate-100 pt-4">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-[13px] font-bold text-slate-600">
                       {t.initials}
                     </span>
                     <span>
-                      <span className="block text-[14px] font-semibold text-[#1B2A41] dark:text-white">
+                      <span className="block text-[14px] font-semibold text-[#1B2A41]">
                         {t.name}
                       </span>
-                      <span className="block text-xs text-slate-500 dark:text-slate-400">{t.role}</span>
+                      <span className="block text-xs text-slate-500">{t.role}</span>
                     </span>
                   </figcaption>
                 </figure>
@@ -654,7 +757,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="download" className="bg-white px-4 pb-12 pt-6 sm:px-6 dark:bg-[#0B1220]">
+      <section id="download" className="bg-white px-4 pb-12 pt-6 sm:px-6">
         <Reveal y={32} duration={0.8}>
           <div className="relative mx-auto w-full max-w-[1200px]">
             <div className="relative isolate overflow-hidden rounded-3xl bg-[#0B1220]">
@@ -749,7 +852,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <footer className="bg-white px-6 py-7 sm:px-10 dark:bg-[#0B1220]">
+      <footer className="bg-white px-6 py-7 sm:px-10">
         <Reveal y={16} duration={0.5}>
           <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-5 md:flex-row md:justify-between">
           <a href="#home" className="flex items-center gap-2">
@@ -760,14 +863,14 @@ export default function Home() {
               height={489}
               className="h-8 w-8 object-contain"
             />
-            <span className="text-lg font-bold tracking-tight text-[#1B2A41] dark:text-white">iTantra</span>
+            <span className="text-lg font-bold tracking-tight text-[#1B2A41]">iTantra</span>
           </a>
           <nav className="flex items-center gap-7">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-slate-500 transition-colors hover:text-[#E5484D] dark:text-slate-400"
+                className="text-sm font-medium text-slate-500 transition-colors hover:text-[#E5484D]"
               >
                 {link.label}
               </a>
