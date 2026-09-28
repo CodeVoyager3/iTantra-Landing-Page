@@ -1,5 +1,12 @@
 import Image from "next/image";
-import { Float, HoverLift, Parallax, Reveal, SignalArcs } from "@/components/motion";
+import {
+  Float,
+  HoverLift,
+  Parallax,
+  Reveal,
+  SignalArcs,
+} from "@/components/motion";
+import { ThemePicker } from "@/components/theme-picker";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -122,59 +129,47 @@ function BellIcon({ className }: { className?: string }) {
   );
 }
 
+/* ---------- Trusted organisations (professional wordmarks) ---------- */
+
 const TRUSTED_BRANDS = [
-  {
-    name: "Hindustan Petroleum",
-    badge: { text: "hp", class: "bg-[#E4002B] text-white" },
-    nameClass: "text-[#0B4EA2]",
-  },
-  {
-    name: "Alfamart",
-    badge: null,
-    nameClass: "italic text-[#E4002B]",
-  },
-  {
-    name: "TATA",
-    badge: null,
-    nameClass: "text-[#1B4F9C]",
-  },
-  {
-    name: "Reliance",
-    badge: { text: "◎", class: "bg-[#0A2A66] text-white" },
-    nameClass: "font-serif text-[#0A2A66]",
-  },
-  {
-    name: "ONGC",
-    badge: { text: "O", class: "bg-[#C8102E] text-white" },
-    nameClass: "text-[#C8102E]",
-  },
-  {
-    name: "Indian Railways",
-    badge: { text: "IR", class: "bg-[#F97316] text-white" },
-    nameClass: "text-[#0C5DAA]",
-  },
+  { name: "Hindustan Petroleum", short: "HP", wordmarkClass: "font-extrabold italic tracking-tight" },
+  { name: "IndianOil", short: "IO", wordmarkClass: "font-extrabold tracking-tight" },
+  { name: "TATA", short: "TA", wordmarkClass: "font-serif font-bold tracking-[0.18em]" },
+  { name: "Reliance Industries", short: "RI", wordmarkClass: "font-serif font-bold tracking-tight" },
+  { name: "ONGC", short: "ON", wordmarkClass: "font-extrabold tracking-[0.12em]" },
+  { name: "Indian Railways", short: "IR", wordmarkClass: "font-bold tracking-tight" },
 ];
+
+const TRUST_STATS = [
+  { value: "28+", label: "States and UTs" },
+  { value: "500+", label: "Rescue teams" },
+  { value: "2M+", label: "Citizens protected" },
+  { value: "4.9/5", label: "Average rating" },
+];
+
+/* ---------- Testimonials (professional) ---------- */
 
 const TESTIMONIALS = [
   {
     name: "Neha Sharma",
-    role: "Volunteer",
+    role: "Volunteer, Wayanad",
+    initials: "NS",
     quote:
-      "“iTantra helped us coordinate rescue efforts after the landslide. It worked flawlessly, even without signal!”",
-    avatarClass: "bg-[#E5484D]/15 text-[#E5484D]",
+      "iTantra helped us coordinate rescue efforts after the landslide. It worked reliably even without mobile signal.",
   },
   {
     name: "Rohit Singh",
-    role: "First Responder",
+    role: "First Responder, NDRF",
+    initials: "RS",
     quote:
-      "“The SAR radar is a game changer. We found 3 victims in under 20 minutes using the app.”",
-    avatarClass: "bg-[#3D82F6]/15 text-[#3D82F6]",
+      "The search and rescue radar helped our team locate victims faster during flood operations.",
   },
   {
     name: "Priya Nair",
-    role: "Community Member",
-    quote: "“Simple, powerful, and reliable. This app gives hope when it’s needed most.”",
-    avatarClass: "bg-[#7C5CF6]/15 text-[#7C5CF6]",
+    role: "Community Lead, Kochi",
+    initials: "PN",
+    quote:
+      "Clear, dependable and easy to use. It has become part of our community preparedness kit.",
   },
 ];
 
@@ -186,77 +181,13 @@ function StarIcon({ className }: { className?: string }) {
   );
 }
 
-const THEMES = [
-  {
-    name: "Light Air",
-    desc: "Day mode, high clarity",
-    active: false,
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-5 w-5"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v2" />
-        <path d="M12 20v2" />
-        <path d="m4.93 4.93 1.41 1.41" />
-        <path d="m17.66 17.66 1.41 1.41" />
-        <path d="M2 12h2" />
-        <path d="M20 12h2" />
-        <path d="m6.34 17.66-1.41 1.41" />
-        <path d="m19.07 4.93-1.41 1.41" />
-      </svg>
-    ),
-  },
-  {
-    name: "Dark Stealth",
-    desc: "Night missions, longer battery",
-    active: true,
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-5 w-5"
-        aria-hidden="true"
-      >
-        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-      </svg>
-    ),
-  },
-  {
-    name: "System Auto",
-    desc: "Follows device setting",
-    active: false,
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-5 w-5"
-        aria-hidden="true"
-      >
-        <rect x="8" y="3" width="8" height="18" rx="2" />
-        <path d="M12 18h.01" />
-        <path d="M3.5 9.5a4.5 4.5 0 0 0 0 5" />
-        <path d="m3.5 9.5 1.4 1.6" />
-        <path d="m3.5 14.5 1.4-1.6" />
-      </svg>
-    ),
-  },
-];
+function QuoteMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M10 8H6a4 4 0 0 0-4 4v6h7v-7H6.5A2.5 2.5 0 0 1 9 8.5V8h1Zm12 0h-4a4 4 0 0 0-4 4v6h7v-7h-2.5A2.5 2.5 0 0 1 21 8.5V8h1Z" />
+    </svg>
+  );
+}
 
 const MODULES = [
   {
@@ -265,7 +196,7 @@ const MODULES = [
     screenWidth: 477,
     screenHeight: 523,
     alt: "iTantra SOS distress beacon screen",
-    cardClass: "bg-[#FBEDEE]",
+    cardClass: "bg-[#FBEDEE] dark:bg-[#2B171A]",
     iconBgClass: "bg-[#E5484D]",
     dotClass: "bg-[#E5484D]",
     titleLines: ["1. SOS Distress Beacon"],
@@ -283,7 +214,7 @@ const MODULES = [
     screenWidth: 408,
     screenHeight: 612,
     alt: "iTantra walkie-talkie voice mesh screen",
-    cardClass: "bg-[#E9F0FB]",
+    cardClass: "bg-[#E9F0FB] dark:bg-[#14203A]",
     iconBgClass: "bg-[#3D82F6]",
     dotClass: "bg-[#3D82F6]",
     titleLines: ["2. Walkie-Talkie", "(Tactical Team Comms)"],
@@ -317,7 +248,7 @@ const MODULES = [
     screenWidth: 408,
     screenHeight: 612,
     alt: "iTantra search and rescue radar screen",
-    cardClass: "bg-[#E9F5EE]",
+    cardClass: "bg-[#E9F5EE] dark:bg-[#12261D]",
     iconBgClass: "bg-[#27A567]",
     dotClass: "bg-[#27A567]",
     titleLines: ["3. Search & Rescue", "(SAR) Radar Hub"],
@@ -349,7 +280,7 @@ const MODULES = [
     screenWidth: 408,
     screenHeight: 612,
     alt: "iTantra settings and neural model hub screen",
-    cardClass: "bg-[#EFEAFB]",
+    cardClass: "bg-[#EFEAFB] dark:bg-[#1E1830]",
     iconBgClass: "bg-[#7C5CF6]",
     dotClass: "bg-[#7C5CF6]",
     titleLines: ["4. Settings &", "Neural model Hub"],
@@ -380,7 +311,7 @@ const MODULES = [
 
 export default function Home() {
   return (
-    <main className="flex-1 bg-white">
+    <main className="flex-1 bg-white dark:bg-[#0B1220]">
       <section
         id="home"
         className="relative isolate flex min-h-svh flex-col overflow-hidden bg-[#0B1220]"
@@ -531,20 +462,19 @@ export default function Home() {
           aria-hidden="true"
           viewBox="0 0 1440 150"
           preserveAspectRatio="none"
-          fill="#F7F9FB"
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[100px] w-full sm:h-[130px] lg:h-[18svh]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[100px] w-full fill-[#F7F9FB] sm:h-[130px] lg:h-[18svh] dark:fill-[#0E1626]"
         >
           <path d="M0 150V108C200 126 380 138 620 136C860 134 1140 72 1440 8V150Z" />
         </svg>
       </section>
 
-      <section id="features" className="bg-[#F7F9FB] px-6 py-20 sm:px-10 lg:py-24">
+      <section id="features" className="-mt-px bg-[#F7F9FB] px-6 py-20 sm:px-10 lg:py-24 dark:bg-[#0E1626]">
         <div className="mx-auto w-full max-w-[1200px]">
           <Reveal>
             <p className="text-center text-[13px] font-bold uppercase tracking-[0.16em] text-[#E5484D] lg:text-sm">
               Core Mission Modules
             </p>
-            <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-[#1B2A41] sm:text-4xl lg:text-[40px]">
+            <h2 className="mt-4 text-center text-3xl font-bold tracking-tight text-[#1B2A41] sm:text-4xl lg:text-[40px] dark:text-white">
               Four Powerful Tools. One Mission.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-slate-400 lg:text-lg">
@@ -574,7 +504,7 @@ export default function Home() {
                   >
                     {module.icon}
                   </span>
-                  <h3 className="mt-5 text-xl font-bold leading-snug text-[#1B2A41] lg:text-[22px]">
+                  <h3 className="mt-5 text-xl font-bold leading-snug text-[#1B2A41] lg:text-[22px] dark:text-white">
                     {module.titleLines.map((line) => (
                       <span key={line} className="block">
                         {line}
@@ -585,7 +515,7 @@ export default function Home() {
                     {module.bullets.map((bullet) => (
                       <li
                         key={bullet}
-                        className="flex items-start gap-2.5 text-[15px] leading-snug text-slate-500"
+                        className="flex items-start gap-2.5 text-[15px] leading-snug text-slate-500 dark:text-slate-400"
                       >
                         <span
                           className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full ${module.dotClass}`}
@@ -603,50 +533,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="themes" className="bg-white">
+      <section id="themes" className="bg-white dark:bg-[#0B1220]">
         <div className="mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
           <div className="px-6 py-16 sm:px-10 lg:py-20 lg:pl-16 xl:pl-24">
             <Reveal>
-              <h2 className="text-3xl font-bold tracking-tight text-[#1B2A41] xl:text-[34px]">
+              <h2 className="text-3xl font-bold tracking-tight text-[#1B2A41] xl:text-[34px] dark:text-white">
                 Light &amp; Dark Stealth Theming
               </h2>
-              <p className="mt-3 text-base text-slate-500 lg:text-lg">
+              <p className="mt-3 text-base text-slate-500 lg:text-lg dark:text-slate-400">
                 Choose your style. Stay focused. Always.
               </p>
             </Reveal>
-            <div className="mt-10 grid max-w-[720px] grid-cols-1 gap-4 sm:grid-cols-3">
-              {THEMES.map((theme, i) => (
-                <Reveal key={theme.name} delay={0.15 + i * 0.1} y={20}>
-                  <div
-                    className={`h-full rounded-xl p-5 ${
-                    theme.active
-                      ? "bg-[#0B1220]"
-                      : "border border-slate-100 bg-white shadow-sm"
-                  }`}
-                >
-                  <span
-                    className={`flex h-10 w-10 items-center justify-center rounded-lg ${
-                      theme.active
-                        ? "bg-white/10 text-white"
-                        : "bg-slate-100 text-slate-600"
-                    }`}
-                  >
-                    {theme.icon}
-                  </span>
-                  <p
-                    className={`mt-4 text-[15px] font-semibold ${
-                      theme.active ? "text-white" : "text-[#1B2A41]"
-                    }`}
-                  >
-                    {theme.name}
-                  </p>
-                  <p className="mt-1 text-xs leading-snug text-slate-400">
-                    {theme.desc}
-                  </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            <ThemePicker />
           </div>
           <Reveal delay={0.15} y={32} duration={0.8}>
             <Image
@@ -660,87 +558,103 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="trusted" className="bg-white px-6 pb-16 pt-8 sm:px-10 lg:pt-12">
+      <section id="trusted" className="bg-white px-6 pb-14 pt-10 sm:px-10 lg:pt-12 dark:bg-[#0B1220]">
         <div className="mx-auto w-full max-w-[1200px]">
           <Reveal>
-            <h2 className="text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
-              Trusted Across India
-            </h2>
-            <p className="mt-2 text-[15px] text-slate-500">
-              Used by communities, rescue teams and organizations.
-            </p>
+            <div className="max-w-2xl">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                Trusted across India
+              </p>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px] dark:text-white">
+                Used by communities, rescue teams and organisations
+              </h2>
+            </div>
           </Reveal>
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {TRUSTED_BRANDS.map((brand, i) => (
-              <Reveal key={brand.name} delay={i * 0.06} y={16} duration={0.5}>
-                <div className="flex h-20 items-center justify-center gap-2 rounded-xl border border-slate-100 bg-white px-3 shadow-sm">
-                {brand.badge ? (
-                  <span
-                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-bold ${brand.badge.class}`}
-                  >
-                    {brand.badge.text}
-                  </span>
-                ) : null}
-                <span
-                  className={`text-center text-[13px] font-bold leading-tight ${brand.nameClass}`}
+
+          <Reveal delay={0.1} y={16}>
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+              {TRUSTED_BRANDS.map((brand) => (
+                <div
+                  key={brand.name}
+                  title={brand.name}
+                  className="flex h-[84px] flex-col items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 transition-colors hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:hover:bg-white/10"
                 >
-                  {brand.name}
-                </span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-md bg-slate-100 text-[11px] font-bold text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                    {brand.short}
+                  </span>
+                  <span className={`text-center text-[12px] leading-tight text-slate-600 dark:text-slate-300 ${brand.wordmarkClass}`}>
+                    {brand.name}
+                  </span>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.15} y={16}>
+            <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 sm:grid-cols-4 dark:border-white/10 dark:bg-white/10">
+              {TRUST_STATS.map((stat) => (
+                <div key={stat.label} className="bg-white px-5 py-4 text-center dark:bg-[#0E1626]">
+                  <dt className="order-2 mt-1 block text-[12px] font-medium text-slate-500 dark:text-slate-400">
+                    {stat.label}
+                  </dt>
+                  <dd className="order-1 text-xl font-bold tracking-tight text-[#1B2A41] dark:text-white">
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
       </section>
 
-      <section id="testimonials" className="bg-white px-6 pb-24 pt-8 sm:px-10">
+      <section id="testimonials" className="bg-slate-50 px-6 py-16 sm:px-10 lg:py-20 dark:bg-[#0E1626]">
         <div className="mx-auto w-full max-w-[1200px]">
           <Reveal>
-            <h2 className="text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px]">
-              What Our Users Say
-            </h2>
-            <p className="mt-2 text-[15px] text-slate-500">
-              Real people. Real stories. Real impact.
-            </p>
+            <div className="max-w-2xl">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                Testimonials
+              </p>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#1B2A41] lg:text-[28px] dark:text-white">
+                What our users say
+              </h2>
+              <p className="mt-2 text-[15px] text-slate-500">
+                Feedback from volunteers, responders and community leads.
+              </p>
+            </div>
           </Reveal>
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {TESTIMONIALS.map((testimonial, i) => (
-              <Reveal key={testimonial.name} delay={i * 0.1} y={28} className="h-full">
-                <HoverLift className="h-full">
-                  <div className="flex h-full flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
-                    <div className="flex items-center gap-3">
-                      <span
-                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold ${testimonial.avatarClass}`}
-                      >
-                        {testimonial.name
-                          .split(" ")
-                          .map((part) => part[0])
-                          .join("")}
-                      </span>
-                      <div>
-                        <p className="text-[15px] font-semibold text-[#1B2A41]">
-                          {testimonial.name}
-                        </p>
-                        <p className="text-xs text-slate-400">{testimonial.role}</p>
-                      </div>
-                    </div>
-                    <p className="mt-4 text-sm leading-relaxed text-slate-500">
-                      {testimonial.quote}
-                    </p>
-                    <div className="mt-4 flex gap-1 text-[#E5484D]">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <StarIcon key={i} className="h-4 w-4" />
-                      ))}
-                    </div>
+
+          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+            {TESTIMONIALS.map((t, i) => (
+              <Reveal key={t.name} delay={i * 0.08} y={20} className="h-full">
+                <figure className="flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+                  <QuoteMark className="h-6 w-6 text-slate-300 dark:text-slate-600" />
+                  <blockquote className="mt-3 flex-1 text-[14.5px] leading-relaxed text-slate-600 dark:text-slate-300">
+                    {t.quote}
+                  </blockquote>
+                  <div className="mt-4 flex gap-1 text-amber-400" aria-label="Rated 5 out of 5">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <StarIcon key={s} className="h-4 w-4" />
+                    ))}
                   </div>
-                </HoverLift>
+                  <figcaption className="mt-4 flex items-center gap-3 border-t border-slate-100 pt-4 dark:border-white/10">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-[13px] font-bold text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                      {t.initials}
+                    </span>
+                    <span>
+                      <span className="block text-[14px] font-semibold text-[#1B2A41] dark:text-white">
+                        {t.name}
+                      </span>
+                      <span className="block text-xs text-slate-500 dark:text-slate-400">{t.role}</span>
+                    </span>
+                  </figcaption>
+                </figure>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="download" className="bg-white px-4 pb-12 pt-6 sm:px-6">
+      <section id="download" className="bg-white px-4 pb-12 pt-6 sm:px-6 dark:bg-[#0B1220]">
         <Reveal y={32} duration={0.8}>
           <div className="relative mx-auto w-full max-w-[1200px]">
             <div className="relative isolate overflow-hidden rounded-3xl bg-[#0B1220]">
@@ -835,7 +749,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <footer className="bg-white px-6 py-7 sm:px-10">
+      <footer className="bg-white px-6 py-7 sm:px-10 dark:bg-[#0B1220]">
         <Reveal y={16} duration={0.5}>
           <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-5 md:flex-row md:justify-between">
           <a href="#home" className="flex items-center gap-2">
@@ -846,14 +760,14 @@ export default function Home() {
               height={489}
               className="h-8 w-8 object-contain"
             />
-            <span className="text-lg font-bold tracking-tight text-[#1B2A41]">iTantra</span>
+            <span className="text-lg font-bold tracking-tight text-[#1B2A41] dark:text-white">iTantra</span>
           </a>
           <nav className="flex items-center gap-7">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-slate-500 transition-colors hover:text-[#E5484D]"
+                className="text-sm font-medium text-slate-500 transition-colors hover:text-[#E5484D] dark:text-slate-400"
               >
                 {link.label}
               </a>
