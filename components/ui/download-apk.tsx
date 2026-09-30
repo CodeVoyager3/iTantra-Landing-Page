@@ -4,8 +4,9 @@ import React from "react";
 import Image from "next/image";
 import { HiDownload } from "react-icons/hi";
 
-/** Direct link to the Android package. Point this at a release URL if hosting externally. */
-export const APK_URL = "/apk/app-release.apk";
+/** Direct link to the Android package, hosted as a GitHub Release asset. */
+export const APK_URL =
+  "https://github.com/CodeVoyager3/iTantra-Landing-Page/releases/download/app/app-release.apk";
 export const APK_NAME = "iTantra.apk";
 export const APK_SIZE_LABEL = "~155 MB";
 
